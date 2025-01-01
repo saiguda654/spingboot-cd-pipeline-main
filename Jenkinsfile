@@ -7,7 +7,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 // Checkout the repository from GitHub using credentials
-                git branch: 'main', credentialsId: 'GitHubCred', url: 'https://github.com/saiguda654/spingboot-cd-pipeline-main.git'
+                git branch: 'main', credentialsId: 'github', url: 'https://github.com/saiguda654/spingboot-cd-pipeline-main.git'
                 
                 // Modify the deployment.yml file with the image tag
                 dir("./kubernetes") {
