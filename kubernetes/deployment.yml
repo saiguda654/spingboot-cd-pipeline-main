@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: wezvatechdemo
+  name: saiguda
   labels:
-    app: wezvatechdemo
+    app: saiguda
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: wezvatechdemo
+      app: saiguda
   template:
     metadata:
       labels:
-        app: wezvatechdemo
+        app: saiguda
     spec:
       containers:
-      - name: wezvatechdemo
-        image: adamtravis/wezvatechbackend:9
+      - name: saiguda
+        image: guda654/democicd:latest
         ports:
         - containerPort: 8080
