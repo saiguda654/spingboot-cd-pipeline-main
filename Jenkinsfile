@@ -10,10 +10,10 @@ pipeline {
     steps { 
         git branch: 'main', credentialsId: 'GitHubCred', url: 'https://github.com/saiguda654/spingboot-cd-pipeline-main.git'
       dir ("./kubernetes") {
-              sh "sed -i 's/image: adamtravis.*/image: adamtravis\\/wezvatechbackend:$IMAGETAG/g' deployment.yml" 
+              sh "sed -i 's/image: guda654.*/image: guda654\\/wezvatechbackend:$IMAGETAG/g' deployment.yml" 
 	    }
 	    sh 'git commit -a -m "New deployment for Build $IMAGETAG"'
-	    sh "git push https://scmlearningcentre:$PASSWD@gitlab.com/learndevopseasy/devsecops/spingboot-cd-pipeline.git"
+	    sh "git push https://github.com/saiguda654/spingboot-cd-pipeline-main.git"
     }
   }
  }
