@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: saiguda
-        image: guda654/democicd:latest
+        image: guda654/democicd:1
         ports:
         - containerPort: 8080
