@@ -11,14 +11,22 @@ pipeline {
                 
                 // Modify the deployment.yml file with the image tag
                 dir("./kubernetes") {
-                    sh "sed -i 's/image: guda654.*/image: guda654\\/democicd:$IMAGETAG/g' deployment.yml"
+                    sh "sed -i 's|image: guda654.*|image: guda654/democicd:$IMAGETAG|g' deployment.yml"
                 }
                 
-                // Check if there are changes and commit them
-                sh 'git diff --exit-code || git commit -a -m "New deployment for Build $IMAGETAG"'
+                // Configure Git user for the commit
+                sh '''
+                    git config user.name "Jenkins User"
+                    git config user.email "jenkins@example.com"
+                '''
                 
-                // Push changes using the same credentials
-                sh "git push origin main"
+                // Check if there are changes and commit them
+                sh 'git diff --quiet || git commit -a -m "New deployment for Build $IMAGETAG"'
+                
+                // Push changes using the credentials
+                withCredentials([usernamePassword(credentialsId: 'github', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
+                    sh "git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/saiguda654/spingboot-cd-pipeline-main.git main"
+                }
             }
         }
     }
