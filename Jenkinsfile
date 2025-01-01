@@ -12,7 +12,7 @@ pipeline {
                 
                 // Modify the deployment.yml file with the image tag
                 dir("./kubernetes") {
-                    sh "sed -i 's/image: guda654.*/image: guda654\\/wezvatechbackend:$IMAGETAG/g' deployment.yml" 
+                    sh "sed -i 's/image: guda654.*/image: guda654\\/democicd:$IMAGETAG/g' deployment.yml" 
                 }
                 
                 // Check if there are changes and commit them
